@@ -5,6 +5,7 @@ platforms = ["osx-arm64"]
 [dependencies]
 python = "3.12.*"
 pillow = "==10.2.0"
+cairosvg = ">=2.8.2,<3"
 
 [pypi-dependencies]
 esphome = "*"

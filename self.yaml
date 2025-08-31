@@ -24,6 +24,8 @@ esphome:
       # is added to `logger:`, as detailed in <https://github.com/esphome/feature-requests/issues/1906>:
       - "-DARDUINO_USB_MODE=1"
       - "-DARDUINO_USB_CDC_ON_BOOT=1"
+  libraries:
+    - SPI
 
 esp32:
   variant: esp32s3
@@ -50,6 +52,22 @@ ota:
 
 wifi: !include wifi-secrets.yaml
 
+button:
+  - platform: restart
+    name: "${esp_name} Restart"
+
+  - platform: template
+    name: "${esp_name} Refresh"
+    icon: "mdi:update"
+
+  - platform: template
+    name: "${esp_name} Next Page"
+    icon: "mdi:update"
+    on_press:
+      then:
+      - display.page.show_next: t5_display
+      - component.update: t5_display
+
 binary_sensor:
   - platform: gpio
     pin: 
@@ -57,8 +75,9 @@ binary_sensor:
       inverted: true
     name: "Button 1"
     on_press:
-      - logger.log: PhysButton Pressed
-
+      then:
+      - display.page.show_next: t5_display
+      - component.update: t5_display
 
 sensor:
   - platform: homeassistant
@@ -71,22 +90,98 @@ sensor:
     id: woon_hum
     internal: true
 
+  - platform: lilygo_t5_47_battery
+    id: battery_voltage
+    voltage:
+      name: "Battery Voltage"
+
+  - platform: template
+    name: "Battery Percentage"
+    id: battery_percentage
+    lambda: |-
+      // tweak values in mapping for calibration
+      // 4.1 = max voltage
+      // 3.3 = min voltage
+      float y = (id(battery_voltage).voltage->state - 3.3) * 100.0 / (4.1 - 3.3);
+      if (y < 100.0) { return y; } else { return 100.0; };
+
 external_components:
-  source:
-    type: local
-    path: components/
-  components: ["t547"]
+    - source:
+        type: local
+        path: components/
+      components: ["t547", "lilygo_t5_47_battery"]
+
 
 font:
-  - file: "gfonts://Roboto"
-    id: roboto_20
+
+  - file: "gfonts://Google+Sans"
+    id: font_date
+    size: 58
+  - file: "gfonts://Google+Sans"
+    id: font_time
+    size: 105
+  - file: "gfonts://Google+Sans"
+    id: font_20 
     size: 20
+  - file: "gfonts://Google+Sans"
+    id: font_40
+    size: 40
+  - file: "gfonts://Google+Sans"
+    id: font_50
+    size: 50
+  - file: "gfonts://Google+Sans"
+    id: font_60
+    size: 60
+
+
+image: 
+  - file: "images/bg.png"
+    id: bg_image
+  - file: "mdi:thermometer"
+    id: thermometer
+    resize: 60x60
+  - file: "mdi:water-percent"
+    id: water_percent
+    resize: 60x60
+
+time:
+  - platform: homeassistant
+    id: ntp
 
 display:
   - platform: t547
-    # rotation: 180
+    id: t5_display
+    rotation: 270
     update_interval: 30s
-    lambda: |-
-      it.printf(0, 0, id(roboto_20), "Woonkamer temperatuur: %.2f °C", id(woon_temp).state);
-      it.printf(0, 20, id(roboto_20), "Woonkamer luchtvochtigheid: %.1f %%", id(woon_hum).state);
+    pages:
+      - id: main_page
+        lambda: |-
+          #define xres 540
+          #define yres 960
 
+          it.image(0, 0, id(bg_image));
+
+          // Battery level indicator
+          it.filled_rectangle(0, 0, id(battery_percentage).state*xres/100, 4);
+
+          // Date and time
+          it.strftime(xres/2, 10, id(font_date), TextAlign::TOP_CENTER, "%A %b %d ", id(ntp).now());
+          it.strftime(xres/2, 80, id(font_time), TextAlign::TOP_CENTER, "%H:%M", id(ntp).now());
+
+          // Climate house
+          # define climate_house_y 650
+          it.image(40, climate_house_y, id(thermometer));
+          it.printf(100, climate_house_y, id(font_50), "%.1f °C", id(woon_temp).state);
+          it.image(250, climate_house_y, id(water_percent));
+          it.printf(320, climate_house_y, id(font_50), "%.1f %%", id(woon_hum).state);
+
+          // Climate office
+
+
+          // Climate outdoor
+
+
+
+      - id: stats
+        lambda: |-
+          it.printf(10, 50, id(font_20), "Battery: %.1f% (%.1fV)", id(battery_percentage).state, id(battery_voltage).voltage->state);
