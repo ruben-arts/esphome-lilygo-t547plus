@@ -40,7 +40,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/xorg-libxau-1.0.12-h5505292_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/xorg-libxdmcp-1.1.5-hd74edd7_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.7-h6491c7d_2.conda
-      - pypi: https://files.pythonhosted.org/packages/8e/0a/7c9e2f285a5d3f6e68c377cfd7ce85ad3f73ce5c133fd48b7a417e555443/aioesphomeapi-24.3.0.tar.gz
+      - pypi: https://files.pythonhosted.org/packages/89/4d/e5b6826e7256abc0783876a382797fd26b632b860eecc61698abb46a52ca/aioesphomeapi-24.6.2.tar.gz
       - pypi: https://files.pythonhosted.org/packages/0f/15/5bf3b99495fb160b63f95972b81750f18f7f4e02ad051373b669d17d44f2/aiohappyeyeballs-2.6.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/cf/6f/6abff7fe6813e6f94129a50c8c70bf70fb33ed2515b1037e703cef6d7a7e/ajsonrpc-1.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/6f/12/e5e0282d673bb9746bacfb6e2dba8719989d3660cdb2ea79aee9a9651afb/anyio-4.10.0-py3-none-any.whl
@@ -51,14 +51,14 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/bb/1f/5977ea88c6a3df6199db97d320e5da816d415d1eb75a987a1f6823d5cc9d/bottle-0.12.25-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e5/48/1549795ba7742c948d2ad169c1c8cdbae65bc450d6cd753d124b17c8cd32/certifi-2025.8.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/da/ee/fb72c2b48656111c4ef27f0f91da355e130a923473bf5ee75c5643d00cca/cffi-1.17.1-cp312-cp312-macosx_11_0_arm64.whl
-      - pypi: https://files.pythonhosted.org/packages/c8/f5/de042f4f0a3580541d173db5bb98988f525e3557651d40f04b132350ca38/chacha20poly1305_reuseable-0.12.2.tar.gz
+      - pypi: https://files.pythonhosted.org/packages/fa/30/a4e44159996e832512f93ec6db89756ed72fe454ce3de1978e3a39c10bcd/chacha20poly1305_reuseable-0.13.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/38/6f/f5fbc992a329ee4e0f288c1fe0e2ad9485ed064cac731ed2fe47dcc38cbf/chardet-5.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e9/5e/14c94999e418d9b87682734589404a25854d5f5d0408df68bc15b6ff54bb/charset_normalizer-3.4.3-cp312-cp312-macosx_10_13_universal2.whl
       - pypi: https://files.pythonhosted.org/packages/00/2e/d53fa4befbf2cfa713304affc7ca780ce4fc1fd8710527771b58311a3229/click-8.1.7-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d1/d6/3965ed04c63042e047cb6a3e6ed1a63a35087b6a609aa3a15ed8ac56c221/colorama-0.4.6-py2.py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/f4/06/4229967761a1daf385bdb09bcb11d3d40970a54b52e896b41f43065eecf6/cryptography-42.0.2-cp39-abi3-macosx_10_12_universal2.whl
+      - pypi: https://files.pythonhosted.org/packages/66/d7/397515233e6a861f921bd0365b162b38e0cc513fcf4f1bdd9cc7bc5a3384/cryptography-43.0.0-cp39-abi3-macosx_10_9_universal2.whl
       - pypi: https://files.pythonhosted.org/packages/cb/a3/460c57f094a4a165c84a1341c373b0a4f5ec6ac244b998d5021aade89b77/ecdsa-0.19.1-py2.py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/e6/91/3a64268ea3bfa102e2342c6aa7b3a3028d2925df6156d2da3bc6ba3b5509/esphome-2024.6.5-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/37/41/f335c39c4a8fc8a0e108d2b7d73c9ac262151c735c5c3cdb67890c10af8c/esphome-2024.10.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c5/af/8e2e1b755150e65833743069e0183888ac9d22790998463c0c223f7e0134/esphome_dashboard-20240620.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1b/8b/f0d1e75879dee053874a4f955ed1e9ad97275485f51cb4bc2cb4e9b24479/esptool-4.7.0.tar.gz
       - pypi: https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl
@@ -73,11 +73,11 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/f8/dd/4b75dcba025f8647bc9862ac17299e0d7d12d3beadbf026d8c8d74215c12/paho-mqtt-1.6.1.tar.gz
       - pypi: https://files.pythonhosted.org/packages/13/78/8903f4f505a393ee48a18a00b4b9c866a726ef844d23ff3ce4863d710898/platformio-6.1.15.tar.gz
       - pypi: https://files.pythonhosted.org/packages/cc/5b/0d421533c59c789e9c9894683efac582c06246bf24bb26b753b149bd88e4/protobuf-6.32.0-cp39-abi3-macosx_10_9_universal2.whl
+      - pypi: https://files.pythonhosted.org/packages/b1/5c/c277e7638815795a8fd6487e70eeeb30698e5033f4d562619e1571c660d2/puremagic-1.27-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/13/a3/a812df4e2dd5696d1f351d58b8fe16a405b234ad2886a0dab9183fb78109/pycparser-2.22-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/af/43/700932c4f0638c3421177144a2e86448c0d75dbaee2c7936bda3f9fd0878/pyelftools-0.32-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/05/e7/df2285f3d08fee213f2d041540fa4fc9ca6c2d44cf36d3a035bf2a8d2bcc/pyparsing-3.2.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/07/bc/587a445451b253b285629263eb51c2d8e9bcea4fc97826266d186f96f558/pyserial-3.5-py2.py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/6c/73/9f872cb81fc5c3bb48f7227872c28975f998f3e7c2b1c16e95e6432bbb90/python_magic-0.4.27-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/84/02/404de95ced348b73dd84f70e15a41843d817ff8c1744516bf78358f2ffd2/PyYAML-6.0.1-cp312-cp312-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/09/19/1bb346c0e581557c88946d2bb979b2bee8992e72314cfb418b5440e383db/reedsolo-1.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1e/db/4254e3eabe8020b458f1a747140d32277ec7a271daf1d235b70dc0b4e6e3/requests-2.32.5-py3-none-any.whl
@@ -98,17 +98,17 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/78/58/e860788190eba3bcce367f74d29c4675466ce8dddfba85f7827588416f01/wsproto-1.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/24/7d/02e8c583b57692eee495e60c7a4dd862635a9702067d69c6dd1c907cb589/zeroconf-0.132.2.tar.gz
 packages:
-- pypi: https://files.pythonhosted.org/packages/8e/0a/7c9e2f285a5d3f6e68c377cfd7ce85ad3f73ce5c133fd48b7a417e555443/aioesphomeapi-24.3.0.tar.gz
+- pypi: https://files.pythonhosted.org/packages/89/4d/e5b6826e7256abc0783876a382797fd26b632b860eecc61698abb46a52ca/aioesphomeapi-24.6.2.tar.gz
   name: aioesphomeapi
-  version: 24.3.0
-  sha256: 70a341c0a707aa7125a4b679f50b045a10a3c22a1cf90c9e6c81fbeafd082277
+  version: 24.6.2
+  sha256: dfde91df6b115cddac95d82ca968847a7f726b2a0d0ecef6cee8c065bdbb701c
   requires_dist:
   - aiohappyeyeballs>=2.3.0
   - async-interrupt>=1.1.1
   - protobuf>=3.19.0
   - zeroconf>=0.132.2,<1.0
-  - chacha20poly1305-reuseable>=0.12.1
-  - cryptography>=42.0.2
+  - chacha20poly1305-reuseable>=0.13.2
+  - cryptography>=43.0.0
   - noiseprotocol>=0.3.1,<1.0
   - async-timeout>=4.0 ; python_full_version < '3.11'
   requires_python: '>=3.9'
@@ -195,12 +195,12 @@ packages:
   requires_dist:
   - pycparser
   requires_python: '>=3.8'
-- pypi: https://files.pythonhosted.org/packages/c8/f5/de042f4f0a3580541d173db5bb98988f525e3557651d40f04b132350ca38/chacha20poly1305_reuseable-0.12.2.tar.gz
+- pypi: https://files.pythonhosted.org/packages/fa/30/a4e44159996e832512f93ec6db89756ed72fe454ce3de1978e3a39c10bcd/chacha20poly1305_reuseable-0.13.2-py3-none-any.whl
   name: chacha20poly1305-reuseable
-  version: 0.12.2
-  sha256: 378801cc9902d881511a0d1f817f9571a63bf41bf072b0f02d2daab3ae5cf30b
+  version: 0.13.2
+  sha256: c7dba7c3604a9fa51bcfef9e4bfdaa3bfaadd88b6c5436a27be1c7e9c4081048
   requires_dist:
-  - cryptography>=42.0.0
+  - cryptography>=43.0.0
   requires_python: '>=3.8,<4.0'
 - pypi: https://files.pythonhosted.org/packages/38/6f/f5fbc992a329ee4e0f288c1fe0e2ad9485ed064cac731ed2fe47dcc38cbf/chardet-5.2.0-py3-none-any.whl
   name: chardet
@@ -225,24 +225,15 @@ packages:
   version: 0.4.6
   sha256: 4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6
   requires_python: '>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*'
-- pypi: https://files.pythonhosted.org/packages/f4/06/4229967761a1daf385bdb09bcb11d3d40970a54b52e896b41f43065eecf6/cryptography-42.0.2-cp39-abi3-macosx_10_12_universal2.whl
+- pypi: https://files.pythonhosted.org/packages/66/d7/397515233e6a861f921bd0365b162b38e0cc513fcf4f1bdd9cc7bc5a3384/cryptography-43.0.0-cp39-abi3-macosx_10_9_universal2.whl
   name: cryptography
-  version: 42.0.2
-  sha256: 55d1580e2d7e17f45d19d3b12098e352f3a37fe86d380bf45846ef257054b242
+  version: 43.0.0
+  sha256: 7b3f5fe74a5ca32d4d0f302ffe6680fcc5c28f8ef0dc0ae8f40c0f3a1b4fca66
   requires_dist:
   - cffi>=1.12 ; platform_python_implementation != 'PyPy'
-  - sphinx>=5.3.0 ; extra == 'docs'
-  - sphinx-rtd-theme>=1.1.1 ; extra == 'docs'
-  - pyenchant>=1.6.11 ; extra == 'docstest'
-  - readme-renderer ; extra == 'docstest'
-  - sphinxcontrib-spelling>=4.0.1 ; extra == 'docstest'
-  - nox ; extra == 'nox'
-  - ruff ; extra == 'pep8test'
-  - mypy ; extra == 'pep8test'
-  - check-sdist ; extra == 'pep8test'
-  - click ; extra == 'pep8test'
-  - build ; extra == 'sdist'
   - bcrypt>=3.1.5 ; extra == 'ssh'
+  - nox ; extra == 'nox'
+  - cryptography-vectors==43.0.0 ; extra == 'test'
   - pytest>=6.2.0 ; extra == 'test'
   - pytest-benchmark ; extra == 'test'
   - pytest-cov ; extra == 'test'
@@ -250,6 +241,16 @@ packages:
   - pretend ; extra == 'test'
   - certifi ; extra == 'test'
   - pytest-randomly ; extra == 'test-randomorder'
+  - sphinx>=5.3.0 ; extra == 'docs'
+  - sphinx-rtd-theme>=1.1.1 ; extra == 'docs'
+  - pyenchant>=1.6.11 ; extra == 'docstest'
+  - readme-renderer ; extra == 'docstest'
+  - sphinxcontrib-spelling>=4.0.1 ; extra == 'docstest'
+  - build ; extra == 'sdist'
+  - ruff ; extra == 'pep8test'
+  - mypy ; extra == 'pep8test'
+  - check-sdist ; extra == 'pep8test'
+  - click ; extra == 'pep8test'
   requires_python: '>=3.7'
 - pypi: https://files.pythonhosted.org/packages/cb/a3/460c57f094a4a165c84a1341c373b0a4f5ec6ac244b998d5021aade89b77/ecdsa-0.19.1-py2.py3-none-any.whl
   name: ecdsa
@@ -260,12 +261,12 @@ packages:
   - gmpy ; extra == 'gmpy'
   - gmpy2 ; extra == 'gmpy2'
   requires_python: '>=2.6,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*'
-- pypi: https://files.pythonhosted.org/packages/e6/91/3a64268ea3bfa102e2342c6aa7b3a3028d2925df6156d2da3bc6ba3b5509/esphome-2024.6.5-py3-none-any.whl
+- pypi: https://files.pythonhosted.org/packages/37/41/f335c39c4a8fc8a0e108d2b7d73c9ac262151c735c5c3cdb67890c10af8c/esphome-2024.10.3-py3-none-any.whl
   name: esphome
-  version: 2024.6.5
-  sha256: 20279aa4409e9444bec5b18ef14473fd289e8f6f76c04077c30b6f53aeb0394e
+  version: 2024.10.3
+  sha256: b6a22c627c7f683ce7704bf4c13bdee37fb5301db0a974bc940843c8662ba892
   requires_dist:
-  - cryptography==42.0.2
+  - cryptography==43.0.0
   - voluptuous==0.14.2
   - pyyaml==6.0.1
   - paho-mqtt==1.6.1
@@ -279,9 +280,9 @@ packages:
   - esptool==4.7.0
   - click==8.1.7
   - esphome-dashboard==20240620.0
-  - aioesphomeapi==24.3.0
+  - aioesphomeapi==24.6.2
   - zeroconf==0.132.2
-  - python-magic==0.4.27
+  - puremagic==1.27
   - ruamel-yaml==0.18.6
   - kconfiglib==13.7.1
   - pyparsing>=3.0
@@ -292,7 +293,7 @@ packages:
   - yamllint==1.35.1 ; extra == 'dev'
   - pillow==10.2.0 ; extra == 'displays'
   - cairosvg==2.7.1 ; extra == 'displays'
-  - pylint==3.1.0 ; extra == 'test'
+  - pylint==3.2.7 ; extra == 'test'
   - flake8==7.0.0 ; extra == 'test'
   - black==24.4.2 ; extra == 'test'
   - pyupgrade==3.15.2 ; extra == 'test'
@@ -695,6 +696,10 @@ packages:
   purls: []
   size: 8381
   timestamp: 1726802424786
+- pypi: https://files.pythonhosted.org/packages/b1/5c/c277e7638815795a8fd6487e70eeeb30698e5033f4d562619e1571c660d2/puremagic-1.27-py3-none-any.whl
+  name: puremagic
+  version: '1.27'
+  sha256: b5519ad89e9b7c96a5fd9947d9a907e44f97cc30eae6dcf746d90a58e3681936
 - pypi: https://files.pythonhosted.org/packages/13/a3/a812df4e2dd5696d1f351d58b8fe16a405b234ad2886a0dab9183fb78109/pycparser-2.22-py3-none-any.whl
   name: pycparser
   version: '2.22'
@@ -740,11 +745,6 @@ packages:
   purls: []
   size: 13009234
   timestamp: 1749048134449
-- pypi: https://files.pythonhosted.org/packages/6c/73/9f872cb81fc5c3bb48f7227872c28975f998f3e7c2b1c16e95e6432bbb90/python_magic-0.4.27-py2.py3-none-any.whl
-  name: python-magic
-  version: 0.4.27
-  sha256: c212960ad306f700aa0d01e5d7a325d20548ff97eb9920dcd29513174f0294d3
-  requires_python: '>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*'
 - conda: https://conda.anaconda.org/conda-forge/noarch/python_abi-3.12-8_cp312.conda
   build_number: 8
   sha256: 80677180dd3c22deb7426ca89d6203f1c7f1f256f2d5a94dc210f6e758229809

@@ -84,16 +84,9 @@ font:
 
 display:
   - platform: t547
-    auto_clear_enabled: false
-    update_interval: never
     # rotation: 180
-    # update_interval: 30s
-    # lambda: |-
-    #   it.printf(0, 0, id(roboto_20), "Woonkamer temperatuur: %.2f °C", id(woon_temp).state);
-    #   it.printf(0, 20, id(roboto_20), "Woonkamer luchtvochtigheid: %.1f %%", id(woon_hum).state);
+    update_interval: 30s
+    lambda: |-
+      it.printf(0, 0, id(roboto_20), "Woonkamer temperatuur: %.2f °C", id(woon_temp).state);
+      it.printf(0, 20, id(roboto_20), "Woonkamer luchtvochtigheid: %.1f %%", id(woon_hum).state);
 
-lvgl:
-widgets:
-  - label:
-      align: CENTER
-      text: 'Hello World!'
