@@ -1,0 +1,10 @@
+[workspace]
+channels = ["conda-forge"]
+platforms = ["osx-arm64"]
+
+[dependencies]
+python = "3.12.*"
+pillow = "==10.2.0"
+
+[pypi-dependencies]
+esphome = "==2024.6.5"
