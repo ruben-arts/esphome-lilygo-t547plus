@@ -89,6 +89,21 @@ sensor:
     entity_id: sensor.woonkamer_humidity
     id: woon_hum
     internal: true
+  
+  - platform: homeassistant
+    entity_id: sensor.kantoor_temperature
+    id: kantoor_temp
+    internal: true
+
+  - platform: homeassistant
+    entity_id: sensor.kantoor_humidity
+    id: kantoor_hum
+    internal: true
+  
+  - platform: homeassistant
+    entity_id: sensor.iris_en_ruben_huis_outdoor_temperature
+    id: outdoor_temp
+    internal: true
 
   - platform: lilygo_t5_47_battery
     id: battery_voltage
