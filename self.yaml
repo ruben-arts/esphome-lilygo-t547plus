@@ -78,6 +78,10 @@ binary_sensor:
       then:
       - display.page.show_next: t5_display
       - component.update: t5_display
+  
+  - platform: homeassistant
+    id: vac_cleaning
+    entity_id: binary_sensor.noonoo2_cleaning
 
 sensor:
   - platform: homeassistant
@@ -105,6 +109,15 @@ sensor:
     id: outdoor_temp
     internal: true
 
+  - platform: homeassistant
+    entity_id: sensor.noonoo2_cleaning_progress
+    id: vac_progress
+   
+  - platform: homeassistant
+    entity_id: sensor.prefix_dev_pixi_stars
+    id: pixi_stars
+
+  # Board platform
   - platform: lilygo_t5_47_battery
     id: battery_voltage
     voltage:
@@ -136,6 +149,9 @@ font:
     id: font_time
     size: 105
   - file: "gfonts://Google+Sans"
+    id: font_15
+    size: 15
+  - file: "gfonts://Google+Sans"
     id: font_20 
     size: 20
   - file: "gfonts://Google+Sans"
@@ -158,6 +174,9 @@ image:
   - file: "mdi:water-percent"
     id: water_percent
     resize: 60x60
+  - file: "mdi:star"
+    id: star_icon
+    resize: 100x100
 
 time:
   - platform: homeassistant
@@ -195,7 +214,31 @@ display:
 
           // Climate outdoor
 
+          // GitHub
+          // Pixi stars, with icon
+          it.print(85, 235, id(font_40), "Pixi");
+          it.image(70, 265, id(star_icon));
+          it.printf(77, 350, id(font_40), "%.0f", id(pixi_stars).state);
 
+          // Vacuum progress bar
+          if (id(vac_cleaning).state) {
+            int vac_state = id(vac_progress).state;
+            int vac_pose = vac_state*xres/100;
+            int vac_width = 50;
+            int vac_height = 18;
+            int vac_spacing = 6;
+          
+
+            // Draw dirt line
+            it.filled_rectangle(vac_pose, yres-4, xres, 10);
+
+            // Draw rectangle that represents the Vacuum itself, fitting between the xres and yres limits
+            it.filled_rectangle(vac_pose-vac_width/2, yres-vac_height-vac_spacing, vac_width, vac_height);
+            it.filled_rectangle(vac_pose-5, yres-vac_height-vac_spacing-4, 10, 4);
+
+            // Draw percentage in vacuum
+            it.printf(vac_pose, yres-vac_height-vac_spacing, id(font_15), Color(0, 0, 0), display::TextAlign::TOP_CENTER, "%.0f%%", id(vac_progress).state);
+          }
 
       - id: stats
         lambda: |-
