@@ -55,6 +55,8 @@ wifi: !include wifi-secrets.yaml
 # Include rounded rectangle component
 rounded_rect:
 
+shadow_rect:
+
 button:
   - platform: restart
     name: "${esp_name} Restart"
@@ -140,7 +142,7 @@ external_components:
     - source:
         type: local
         path: components/
-      components: ["t547", "lilygo_t5_47_battery", "rounded_rect"]
+      components: ["t547", "lilygo_t5_47_battery", "rounded_rect", "shadow_rect"]
 
 
 font:
@@ -196,14 +198,23 @@ display:
           #define xres 540
           #define yres 960
 
-          it.image(0, 0, id(bg_image));
+          //it.image(0, 0, id(bg_image));
 
           // Battery level indicator with rounded corners
           auto battery_width = id(battery_percentage).state*xres/100;
           esphome::rounded_rect::RoundedRect::draw_rounded_rect(&it, 0, 0, battery_width, 8, 4, COLOR_ON, true);
 
-          // Date and time in rounded container
-          esphome::rounded_rect::RoundedRect::draw_rounded_rect_outline(&it, 10, 10, xres-20, 200, 15, COLOR_ON, 5);
+          // Date and time in rounded container with shadow
+          esphome::shadow_rect::ShadowRect::draw_rect_with_shadow(
+            &it,
+            10, 10,             // x, y
+            xres-20, 200,       // width, height
+            COLOR_ON,           // main color
+            COLOR_ON,           // shadow color  
+            -5, 5,               // x_offset, y_offset
+            3,                  // thickness
+            false               // filled
+          );
           it.strftime(xres/2, 10, id(font_date), TextAlign::TOP_CENTER, "%A %b %d", id(ntp).now());
           it.strftime(xres/2, 80, id(font_time), TextAlign::TOP_CENTER, "%H:%M", id(ntp).now());
 
@@ -221,9 +232,24 @@ display:
 
           // GitHub
           // Pixi stars, with icon
-          it.print(85, 235, id(font_40), "Pixi");
-          it.image(70, 265, id(star_icon));
-          it.printf(77, 350, id(font_40), "%.0f", id(pixi_stars).state);
+          int box_width = 150;
+          int box_height = 180;
+          int x_index_pixi = xres/3 + 5 - box_width/2 ;
+          int y_index_pixi = 230;
+          // esphome::rounded_rect::RoundedRect::draw_rounded_rect_outline(&it, x_index_pixi - box_width/2, y_index_pixi, box_width, box_height, 20, COLOR_ON, 5);
+          esphome::shadow_rect::ShadowRect::draw_rect_with_shadow(
+            &it,
+            x_index_pixi - box_width/2, y_index_pixi, // x, y
+            box_width, box_height,                     // width, height
+            COLOR_ON,                                 // main color
+            COLOR_ON,                                 // shadow color  
+            -5, 5,                                    // x_offset, y_offset
+            3,                                        // thickness
+            false                                     // filled
+          );
+          it.print(x_index_pixi, y_index_pixi + 30, id(font_40), TextAlign::CENTER, "Pixi");
+          it.image(x_index_pixi, y_index_pixi + box_height/2, id(star_icon), ImageAlign::CENTER);
+          it.printf(x_index_pixi, y_index_pixi + box_height - 30, id(font_40), TextAlign::CENTER, "%.0f", id(pixi_stars).state);
 
           // Vacuum progress bar
           if (id(vac_cleaning).state) {
