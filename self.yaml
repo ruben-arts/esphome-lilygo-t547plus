@@ -115,6 +115,14 @@ sensor:
     internal: true
 
   - platform: homeassistant
+    entity_id: sensor.slaapkamer_temperature
+    id: slaapkamer_temp
+
+  - platform: homeassistant
+    entity_id: sensor.slaapkamer_humidity
+    id: slaapkamer_hum
+
+  - platform: homeassistant
     entity_id: sensor.noonoo2_cleaning_progress
     id: vac_progress
    
@@ -183,10 +191,13 @@ image:
     id: bg_image
   - file: "mdi:thermometer"
     id: thermometer
-    resize: 60x60
+    resize: 50x50
+  - file: "mdi:thermometer-high"
+    id: thermometer_high
+    resize: 50x50
   - file: "mdi:water-percent"
     id: water_percent
-    resize: 60x60
+    resize: 50x50
   - file: "mdi:star"
     id: star_icon
     resize: 100x100
@@ -228,15 +239,31 @@ display:
 
           // Climate house
           # define climate_house_y 650
-          it.image(40, climate_house_y, id(thermometer));
-          it.printf(100, climate_house_y, id(font_50), "%.1f °C", id(woon_temp).state);
-          it.image(250, climate_house_y, id(water_percent));
-          it.printf(320, climate_house_y, id(font_50), "%.1f %%", id(woon_hum).state);
+          int xoffset = 20;
+          esphome::rounded_rect::RoundedRect::draw_rounded_rect_outline(&it, 10, climate_house_y - 5, xres - 20, 60, 20, COLOR_ON, 5);
+          it.print(0 + xoffset, climate_house_y, id(font_40), TextAlign::LEFT, "Woon");
+          it.image(140 + xoffset, climate_house_y, id(thermometer));
+          it.printf(190 + xoffset, climate_house_y, id(font_40), "%.1f °C", id(woon_temp).state);
+          it.image(320 + xoffset, climate_house_y, id(water_percent));
+          it.printf(370 + xoffset, climate_house_y, id(font_40), "%.1f %%", id(woon_hum).state);
 
           // Climate office
+          # define climate_kantoor_y 720
+          esphome::rounded_rect::RoundedRect::draw_rounded_rect_outline(&it, 10, climate_kantoor_y - 5, xres - 20, 60, 20, COLOR_ON, 5);
+          it.print(0 + xoffset, climate_kantoor_y, id(font_40), TextAlign::LEFT, "Kantoor");
+          it.image(140 + xoffset, climate_kantoor_y, id(thermometer));
+          it.printf(190 + xoffset, climate_kantoor_y, id(font_40), "%.1f °C", id(kantoor_temp).state);
+          it.image(320 + xoffset, climate_kantoor_y, id(water_percent));
+          it.printf(370 + xoffset, climate_kantoor_y, id(font_40), "%.1f %%", id(kantoor_hum).state);
 
-
-          // Climate outdoor
+          // Climate slaapkamer
+          # define climate_slaapkamer_y 790
+          esphome::rounded_rect::RoundedRect::draw_rounded_rect_outline(&it, 10, climate_slaapkamer_y - 5, xres - 20, 60, 20, COLOR_ON, 5);
+          it.print(0 + xoffset, climate_slaapkamer_y, id(font_40), TextAlign::LEFT, "Slaap");
+          it.image(140 + xoffset, climate_slaapkamer_y, id(thermometer));
+          it.printf(190 + xoffset, climate_slaapkamer_y, id(font_40), "%.1f °C", id(slaapkamer_temp).state);
+          it.image(320 + xoffset, climate_slaapkamer_y, id(water_percent));
+          it.printf(370 + xoffset, climate_slaapkamer_y, id(font_40), "%.1f %%", id(slaapkamer_hum).state);
 
           // GitHub
           // Pixi stars, with icon
