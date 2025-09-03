@@ -52,6 +52,9 @@ ota:
 
 wifi: !include wifi-secrets.yaml
 
+# Include rounded rectangle component
+rounded_rect:
+
 button:
   - platform: restart
     name: "${esp_name} Restart"
@@ -137,7 +140,7 @@ external_components:
     - source:
         type: local
         path: components/
-      components: ["t547", "lilygo_t5_47_battery"]
+      components: ["t547", "lilygo_t5_47_battery", "rounded_rect"]
 
 
 font:
@@ -195,11 +198,13 @@ display:
 
           it.image(0, 0, id(bg_image));
 
-          // Battery level indicator
-          it.filled_rectangle(0, 0, id(battery_percentage).state*xres/100, 4);
+          // Battery level indicator with rounded corners
+          auto battery_width = id(battery_percentage).state*xres/100;
+          esphome::rounded_rect::RoundedRect::draw_rounded_rect(&it, 0, 0, battery_width, 8, 4, COLOR_ON, true);
 
-          // Date and time
-          it.strftime(xres/2, 10, id(font_date), TextAlign::TOP_CENTER, "%A %b %d ", id(ntp).now());
+          // Date and time in rounded container
+          esphome::rounded_rect::RoundedRect::draw_rounded_rect_outline(&it, 10, 10, xres-20, 200, 15, COLOR_ON, 5);
+          it.strftime(xres/2, 10, id(font_date), TextAlign::TOP_CENTER, "%A %b %d", id(ntp).now());
           it.strftime(xres/2, 80, id(font_time), TextAlign::TOP_CENTER, "%H:%M", id(ntp).now());
 
           // Climate house
