@@ -121,6 +121,14 @@ sensor:
   - platform: homeassistant
     entity_id: sensor.prefix_dev_pixi_stars
     id: pixi_stars
+  
+  - platform: homeassistant
+    entity_id: sensor.prefix_dev_rattler_build_stars
+    id: rattler_build_stars
+  
+  - platform: homeassistant
+    entity_id: sensor.conda_rattler_stars
+    id: rattler_stars
 
   # Board platform
   - platform: lilygo_t5_47_battery
@@ -232,9 +240,9 @@ display:
 
           // GitHub
           // Pixi stars, with icon
-          int box_width = 150;
-          int box_height = 180;
-          int x_index_pixi = xres/3 + 5 - box_width/2 ;
+          int box_width = 160;
+          int box_height = 190;
+          int x_index_pixi = xres/6;
           int y_index_pixi = 230;
           // esphome::rounded_rect::RoundedRect::draw_rounded_rect_outline(&it, x_index_pixi - box_width/2, y_index_pixi, box_width, box_height, 20, COLOR_ON, 5);
           esphome::shadow_rect::ShadowRect::draw_rect_with_shadow(
@@ -251,14 +259,49 @@ display:
           it.image(x_index_pixi, y_index_pixi + box_height/2, id(star_icon), ImageAlign::CENTER);
           it.printf(x_index_pixi, y_index_pixi + box_height - 30, id(font_40), TextAlign::CENTER, "%.0f", id(pixi_stars).state);
 
+          // Rattler build stars, with icon
+          int x_index_rattler_build = xres/2 ;
+          int y_index_rattler_build = 230;
+          // esphome::rounded_rect::RoundedRect::draw_rounded_rect_outline(&it, x_index_rattler_build - box_width/2, y_index_rattler_build, box_width, box_height, 20, COLOR_ON, 5);
+          esphome::shadow_rect::ShadowRect::draw_rect_with_shadow(
+            &it,
+            x_index_rattler_build - box_width/2, y_index_rattler_build, // x, y
+            box_width, box_height,                     // width, height
+            COLOR_ON,                                 // main color
+            COLOR_ON,                                 // shadow color  
+            -5, 5,                                    // x_offset, y_offset
+            3,                                        // thickness
+            false                                     // filled
+          );
+          it.print(x_index_rattler_build, y_index_rattler_build + 30, id(font_40), TextAlign::CENTER, "Rattler B");
+          it.image(x_index_rattler_build, y_index_rattler_build + box_height/2, id(star_icon), ImageAlign::CENTER);
+          it.printf(x_index_rattler_build, y_index_rattler_build + box_height - 30, id(font_40), TextAlign::CENTER, "%.0f", id(rattler_build_stars).state);
+
+          // Rattler stars, with icon
+          int x_index_rattler = xres*5/6 ;
+          int y_index_rattler = 230;
+          // esphome::rounded_rect::RoundedRect::draw_rounded_rect_outline(&it, x_index_rattler - box_width/2, y_index_rattler, box_width, box_height, 20, COLOR_ON, 5);
+          esphome::shadow_rect::ShadowRect::draw_rect_with_shadow(
+            &it,
+            x_index_rattler - box_width/2, y_index_rattler, // x, y
+            box_width, box_height,                     // width, height
+            COLOR_ON,                                 // main color
+            COLOR_ON,                                 // shadow color
+            -5, 5,                                    // x_offset, y_offset
+            3,                                        // thickness
+            false                                     // filled
+          );
+          it.print(x_index_rattler, y_index_rattler + 30, id(font_40), TextAlign::CENTER, "Rattler");
+          it.image(x_index_rattler, y_index_rattler + box_height/2, id(star_icon), ImageAlign::CENTER);
+          it.printf(x_index_rattler, y_index_rattler + box_height - 30, id(font_40), TextAlign::CENTER, "%.0f", id(rattler_stars).state);
+
           // Vacuum progress bar
           if (id(vac_cleaning).state) {
             int vac_state = id(vac_progress).state;
             int vac_pose = vac_state*xres/100;
             int vac_width = 50;
             int vac_height = 18;
-            int vac_spacing = 6;
-          
+            int vac_spacing = 6;          
 
             // Draw dirt line
             it.filled_rectangle(vac_pose, yres-4, xres, 10);
