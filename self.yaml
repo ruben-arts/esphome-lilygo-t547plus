@@ -296,23 +296,39 @@ display:
           it.printf(x_index_rattler, y_index_rattler + box_height - 30, id(font_40), TextAlign::CENTER, "%.0f", id(rattler_stars).state);
 
           // Vacuum progress bar
+          int vac_width = 50;
+          int vac_height = 18;
+          int vac_spacing = 6;
+
+          /// Draw dock
+          int dock_width = 30;
+          int dock_height = 50;
+          int dock_x = xres - dock_width;
+          int dock_y = yres - dock_height - 4;
+          it.filled_rectangle(dock_x, dock_y, dock_width, dock_height);
+          it.filled_rectangle(dock_x, yres-vac_height-vac_spacing-5, dock_width - 10, vac_height + vac_spacing*2, COLOR_OFF);
+
+          // Draw vacuum state
           if (id(vac_cleaning).state) {
             int vac_state = id(vac_progress).state;
             int vac_pose = vac_state*xres/100;
-            int vac_width = 50;
-            int vac_height = 18;
-            int vac_spacing = 6;          
 
             // Draw dirt line
             it.filled_rectangle(vac_pose, yres-4, xres, 10);
 
             // Draw rectangle that represents the Vacuum itself, fitting between the xres and yres limits
-            it.filled_rectangle(vac_pose-vac_width/2, yres-vac_height-vac_spacing, vac_width, vac_height);
-            it.filled_rectangle(vac_pose-5, yres-vac_height-vac_spacing-4, 10, 4);
+            it.filled_rectangle(vac_pose - vac_width / 2, yres - vac_height - vac_spacing, vac_width, vac_height);
+            it.filled_rectangle(vac_pose, yres - vac_height - vac_spacing - 4, 10, 4);
 
             // Draw percentage in vacuum
-            it.printf(vac_pose, yres-vac_height-vac_spacing, id(font_15), Color(0, 0, 0), display::TextAlign::TOP_CENTER, "%.0f%%", id(vac_progress).state);
+            it.printf(vac_pose, yres - vac_height - vac_spacing, id(font_15), Color(0, 0, 0), display::TextAlign::TOP_CENTER, "%.0f%%", id(vac_progress).state);
           }
+          else {
+            // Draw rectangle that represents the Vacuum itself, fitting between the xres and yres limits
+            it.filled_rectangle(xres - vac_width - 12, yres - vac_height - vac_spacing, vac_width, vac_height);
+            it.filled_rectangle(xres - vac_width - 12 + 10, yres - vac_height - vac_spacing - 4, 10, 4);
+          }
+
 
       - id: stats
         lambda: |-
