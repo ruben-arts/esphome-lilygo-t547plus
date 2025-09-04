@@ -126,6 +126,11 @@ sensor:
     entity_id: sensor.noonoo2_cleaning_progress
     id: vac_progress
    
+  # Power
+  - platform: homeassistant
+    entity_id: sensor.tibber_pulse_zilverschat_39_power
+    id: power
+
   - platform: homeassistant
     entity_id: sensor.prefix_dev_pixi_stars
     id: pixi_stars
@@ -206,11 +211,19 @@ time:
   - platform: homeassistant
     id: ntp
 
+graph:
+  # Show bare-minimum auto-ranged graph
+  - id: power_graph
+    sensor: power
+    duration: 1h
+    width: 500
+    height: 200
+
 display:
   - platform: t547
     id: t5_display
     rotation: 270
-    update_interval: 30s
+    update_interval: 60s
     pages:
       - id: main_page
         lambda: |-
@@ -236,6 +249,9 @@ display:
           );
           it.strftime(xres/2, 10, id(font_date), TextAlign::TOP_CENTER, "%A %b %d", id(ntp).now());
           it.strftime(xres/2, 80, id(font_time), TextAlign::TOP_CENTER, "%H:%M", id(ntp).now());
+
+          // Power graph
+          it.graph(10, 450, id(power_graph), COLOR_ON);
 
           // Climate house
           # define climate_house_y 650
