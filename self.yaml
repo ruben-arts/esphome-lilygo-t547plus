@@ -22,8 +22,8 @@ esphome:
       # In addition to lilygo's settings:
       # To enable reading logs over USB until `hardware_uart: USB_CDC` support
       # is added to `logger:`, as detailed in <https://github.com/esphome/feature-requests/issues/1906>:
-      - "-DARDUINO_USB_MODE=1"
-      - "-DARDUINO_USB_CDC_ON_BOOT=1"
+      # - "-DARDUINO_USB_MODE=1"
+      # - "-DARDUINO_USB_CDC_ON_BOOT=1"
   libraries:
     - SPI
 
@@ -39,7 +39,7 @@ esp32:
     platform_version: 5.1.1
 
 logger:
-  level: VERBOSE
+  level: ERROR
   # hardware_uart: USB_CDC  # see note about <https://github.com/esphome/feature-requests/issues/1906> above
 
 # Enable Home Assistant API
@@ -217,7 +217,8 @@ graph:
     sensor: power
     duration: 1h
     width: 500
-    height: 200
+    height: 180
+    border: False
 
 display:
   - platform: t547
@@ -251,7 +252,7 @@ display:
           it.strftime(xres/2, 80, id(font_time), TextAlign::TOP_CENTER, "%H:%M", id(ntp).now());
 
           // Power graph
-          it.graph(10, 450, id(power_graph), COLOR_ON);
+          it.graph(15, 430, id(power_graph), COLOR_ON);
 
           // Climate house
           # define climate_house_y 650
