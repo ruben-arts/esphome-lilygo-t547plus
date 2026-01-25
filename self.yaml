@@ -1,5 +1,12 @@
 esphome:
   name: lilygo
+  on_boot:
+    - priority: -100  # Run after everything is initialized
+      then:
+        - delay: 3s  # Let WiFi connect and fetch data
+        - component.update: t5_display
+        - delay: 2s  # Let display finish updating
+        - script.execute: conditional_sleep
   platformio_options:
     # Unless noted otherwise, based on https://github.com/Xinyuan-LilyGO/LilyGo-EPD47/blob/1eb6119fc31fcff7a6bafecb09f4225313859fc5/examples/demo/platformio.ini#L37
     upload_speed: 921600
@@ -52,6 +59,34 @@ ota:
 
 wifi: !include wifi-secrets.yaml
 
+# Global counter for tracking boot cycles
+globals:
+  - id: boot_cycle_count
+    type: int
+    restore_value: no  # Reset to 0 on each power cycle
+    initial_value: '0'
+
+# Deep sleep configuration
+deep_sleep:
+  id: deep_sleep_control
+
+# Script to handle conditional sleep based on boot cycles
+script:
+  - id: conditional_sleep
+    then:
+      - lambda: |-
+          id(boot_cycle_count) += 1;
+
+          // Fast cycles for first 5 updates to fetch all Home Assistant data
+          if (id(boot_cycle_count) <= 5) {
+            ESP_LOGI("sleep", "Boot cycle %d/5 - fast mode (60s)", id(boot_cycle_count));
+            id(deep_sleep_control).set_sleep_duration(60000);  // 60 seconds
+          } else {
+            ESP_LOGI("sleep", "Boot cycle %d - normal mode (10min)", id(boot_cycle_count));
+            id(deep_sleep_control).set_sleep_duration(600000);  // 10 minutes
+          }
+      - deep_sleep.enter: deep_sleep_control
+
 # Include rounded rectangle component
 rounded_rect:
 
@@ -75,12 +110,13 @@ button:
 
 binary_sensor:
   - platform: gpio
-    pin: 
+    pin:
       number: GPIO21 #was GPIO39 on the previous board
       inverted: true
     name: "Button 1"
     on_press:
       then:
+      - deep_sleep.prevent: deep_sleep_control  # Prevent sleep when button pressed
       - display.page.show_next: t5_display
       - component.update: t5_display
   
@@ -224,7 +260,7 @@ display:
   - platform: t547
     id: t5_display
     rotation: 270
-    update_interval: 60s
+    update_interval: never  # Updates controlled by deep sleep cycle
     pages:
       - id: main_page
         lambda: |-
